@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+generator js {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+model StSClass {
+  id    Int       @id @default(autoincrement())
+  name  String    @db.VarChar(255)
+  cards StSCard[]
+}
+
+model StSCard {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
+  details    String   @db.MediumText
+  image      String   @db.VarChar(255)
+  StSClass   StSClass @relation(fields: [stSClassId], references: [id])
+  stSClassId Int
+}
