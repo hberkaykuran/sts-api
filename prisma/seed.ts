@@ -12,13 +12,15 @@ const getClassInfo = async (className: string) =>{
     let cards : Prisma.StSCardCreateManyStSClassInput[] = [];
     table.find("tr").each(function () {
         let card : Prisma.StSCardCreateWithoutStSClassInput={            
-            name: "",
-            details: "",
-            image: "",       
-        };
-        let rowElements = $(this).find("td").each(function(i,el){
+                name: "",
+                details: "",
+                image: "",       
+            };
+        let rowExists = false;
+        let rowElements = $(this).find("td").each(function(i,el){            
             switch(i){
-                case 0:{                
+                case 0:{
+                    rowExists = true;                
                     card.name = $(el).find("a").text();
                     break;
                 }
@@ -33,10 +35,9 @@ const getClassInfo = async (className: string) =>{
                 default:{
                     break;
                 }
-            }
-            
+            }            
         });        
-        cards.push(card);
+        if(rowExists) cards.push(card);
 
     })
     let classInfo: Prisma.StSClassCreateInput = 
