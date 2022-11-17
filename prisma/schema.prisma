@@ -19,10 +19,10 @@ model StSClass {
 }
 
 model StSCard {
-  id         Int      @id @default(autoincrement())
-  name       String   @db.VarChar(255)
-  details    String   @db.MediumText
-  image      String   @db.VarChar(255)
-  StSClass   StSClass @relation(fields: [stSClassId], references: [id])
-  stSClassId Int
+  id         Int       @id @default(autoincrement())
+  name       String    @db.VarChar(255)
+  details    String    @db.MediumText
+  image      String    @db.VarChar(255)
+  StSClass   StSClass? @relation(fields: [stSClassId], references: [id])
+  stSClassId Int?
 }
