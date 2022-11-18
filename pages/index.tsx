@@ -13,7 +13,7 @@ export default function Home() {
         </div> 
         <div className="space-y-5 mt-8">
           <div className="customButton">
-            <a href="https://github.com/hberkaykuran/sts-api" target="_blank">
+            <a href="https://github.com/hberkaykuran/sts-api" target="_blank" rel="noreferrer">
               <FaGithub className="w-10 h-10 inline-block "/> 
               <p className="flex-grow text-center">Go to Documentation</p>
             </a>
