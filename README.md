@@ -132,7 +132,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [@hberkaykuran](https://twitter.com/hberkaykuran) - berkaykuran54@gmail.com
+H.Berkay Kuran - [@hberkaykuran](https://twitter.com/hberkaykuran) - berkaykuran54@gmail.com
 
 Project Link: [https://github.com/hberkaykuran/sts-api](https://github.com/hberkaykuran/sts-api)
 
