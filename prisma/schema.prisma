@@ -19,10 +19,20 @@ model StSClass {
 }
 
 model StSCard {
-  id         Int       @id @default(autoincrement())
-  name       String    @db.VarChar(255)
-  details    String    @db.MediumText
-  image      String    @db.VarChar(255)
-  StSClass   StSClass? @relation(fields: [stSClassId], references: [id])
+  id         Int           @id @default(autoincrement())
+  name       String        @db.VarChar(255)
+  details    String        @db.MediumText
+  image      String        @db.VarChar(255)
+  StSClass   StSClass?     @relation(fields: [stSClassId], references: [id])
   stSClassId Int?
+  votes      StSCardVote[]
+}
+
+model StSCardVote {
+  id          Int      @id @default(autoincrement())
+  class       String
+  upvotes     Int      @default(0)
+  timesListed Int      @default(0)
+  card        StSCard? @relation(fields: [cardId], references: [id])
+  cardId      Int?
 }

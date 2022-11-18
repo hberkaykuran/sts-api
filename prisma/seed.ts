@@ -11,25 +11,21 @@ const getClassInfo = async (className: string) =>{
     let table = $("#mw-content-text").find("div.mw-parser-output").find("table").find("tbody");
     let cards : Prisma.StSCardCreateManyStSClassInput[] = [];
     table.find("tr").each(function () {
-        let card : Prisma.StSCardCreateWithoutStSClassInput={            
-                name: "",
-                details: "",
-                image: "",       
-            };
+        var nm= "",det= "",img = "";
         let rowExists = false;
         let rowElements = $(this).find("td").each(function(i,el){            
             switch(i){
                 case 0:{
                     rowExists = true;                
-                    card.name = $(el).find("a").text();
+                    nm = $(el).find("a").text();
                     break;
                 }
                 case 1:{
-                    card.image = $(el).find("figure").find("a").attr("href")?.split(".png")[0] + ".png";
+                    det = $(el).find("figure").find("a").attr("href")?.split(".png")[0] + ".png";
                     break;
                 }
                 case 5:{
-                    card.details = $(el).text().trim();
+                    img = $(el).text().trim();
                     break;
                 }
                 default:{
@@ -37,8 +33,15 @@ const getClassInfo = async (className: string) =>{
                 }
             }            
         });        
-        if(rowExists) cards.push(card);
+        if(rowExists) {
 
+            let card : Prisma.StSCardCreateWithoutStSClassInput={            
+                name: nm,
+                details: det,
+                image: img,                      
+            };
+            cards.push(card);
+        }
     })
     let classInfo: Prisma.StSClassCreateInput = 
     {
@@ -63,6 +66,19 @@ const loadClassesAndCards = async () => {
         console.log(err);
     }
 }
+const updateCardVotes =async () => {
+    try {
+        const cards = await prisma.stSCard.findMany({distinct:'name'});
+        cards.forEach(async (card) =>{      
+            await prisma.stSCard.update({
+                where:{id: card.id},
+                data: {votes:{createMany:{data:[{class:"All"},{class:classNamesV[card.stSClassId as number - 1]}]}}}
+            }) 
+        })
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 const classNames = [
 "Ironclad_Cards",
@@ -70,5 +86,12 @@ const classNames = [
 "Defect_Cards",
 "Watcher_Cards",
 ]
+const classNamesV = [
+"Ironclad",
+"Silent",
+"Defect",
+"Watcher",
+]
 
-loadClassesAndCards();
+
+loadClassesAndCards().then(updateCardVotes);
