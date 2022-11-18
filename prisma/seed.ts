@@ -1,3 +1,4 @@
+import { StSClass } from './../node_modules/.prisma/client/index.d';
 import axios from 'axios';
 import { load } from 'cheerio';
 import 'dotenv/config';
@@ -68,11 +69,11 @@ const loadClassesAndCards = async () => {
 }
 const updateCardVotes =async () => {
     try {
-        const cards = await prisma.stSCard.findMany({distinct:'name'});
+        const cards = await prisma.stSCard.findMany({include:{StSClass:true}});
         cards.forEach(async (card) =>{      
             await prisma.stSCard.update({
                 where:{id: card.id},
-                data: {votes:{createMany:{data:[{class:"All"},{class:classNamesV[card.stSClassId as number - 1]}]}}}
+                data: {votes:{createMany:{data:[{class:"All"},{class:card.StSClass?.name || ""}]}}}
             }) 
         })
     } catch (err) {
@@ -86,12 +87,5 @@ const classNames = [
 "Defect_Cards",
 "Watcher_Cards",
 ]
-const classNamesV = [
-"Ironclad",
-"Silent",
-"Defect",
-"Watcher",
-]
 
-
-loadClassesAndCards().then(updateCardVotes);
+updateCardVotes();
