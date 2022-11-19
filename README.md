@@ -124,7 +124,7 @@ TODO
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -132,7 +132,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@hberkaykuran](https://twitter.com/hberkaykuran) - berkaykuran54@gmail.com
+H.Berkay Kuran - [@hberkaykuran](https://twitter.com/hberkaykuran) - berkaykuran54@gmail.com
 
 Project Link: [https://github.com/hberkaykuran/sts-api](https://github.com/hberkaykuran/sts-api)
 
@@ -150,7 +150,7 @@ Project Link: [https://github.com/hberkaykuran/sts-api](https://github.com/hberk
 [issues-shield]: https://img.shields.io/github/issues/hberkaykuran/sts-api.svg?style=for-the-badge
 [issues-url]: https://github.com/hberkaykuran/sts-api/issues
 [license-shield]: https://img.shields.io/github/license/hberkaykuran/sts-api.svg?style=for-the-badge
-[license-url]: https://github.com/hberkaykuran/sts-api/blob/master/LICENSE.txt
+[license-url]: https://github.com/hberkaykuran/sts-api/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/hberkaykuran
 [product-screenshot]: images/screenshot.png
