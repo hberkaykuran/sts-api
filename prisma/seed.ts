@@ -22,11 +22,11 @@ const getClassInfo = async (className: string) =>{
                     break;
                 }
                 case 1:{
-                    det = $(el).find("figure").find("a").attr("href")?.split(".png")[0] + ".png";
+                    img = $(el).find("figure").find("a").attr("href")?.split(".png")[0] + ".png";
                     break;
                 }
                 case 5:{
-                    img = $(el).text().trim();
+                    det = $(el).text().trim();
                     break;
                 }
                 default:{
