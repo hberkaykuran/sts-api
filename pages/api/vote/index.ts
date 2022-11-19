@@ -17,7 +17,7 @@ const handler = async function handler(req:NextApiRequest, res: NextApiResponse)
         //const shuffled = [...stsClass.cards].sort(() => 0.5 - Math.random());
     }
 
-    if(req.method == 'UPDATE'){
+    if(req.method == 'POST'){
         if(!stsCardUpvoteIdNum || !stsCardDownvoteIdNum) return res.status(200).json("Both upvoteId and downvoteId are required");
         const upC = await prisma.stSCardVote.update({where:{id:parseInt(stsCardUpvoteIdNum)},data:{upvotes:{increment:1},timesListed:{increment:1}}});
         const downC = await prisma.stSCardVote.update({where:{id:parseInt(stsCardDownvoteIdNum)},data:{timesListed:{increment:1}}});
