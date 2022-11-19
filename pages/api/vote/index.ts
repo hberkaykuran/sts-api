@@ -2,12 +2,15 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../utils/prisma";
 
 const handler = async function handler(req:NextApiRequest, res: NextApiResponse) {
+    console.log("HERE!");
+    console.log(req.method);    
     const stsClass = req.query.class;
     const stsClassStr = Array.isArray(stsClass) ? stsClass[0]: stsClass; 
     const stsCardUpvoteId = req.query.upvoteId;
     const stsCardUpvoteIdNum = Array.isArray(stsCardUpvoteId) ? stsCardUpvoteId[0]: stsCardUpvoteId; 
     const stsCardDownvoteId = req.query.downvoteId;
     const stsCardDownvoteIdNum = Array.isArray(stsCardDownvoteId) ? stsCardDownvoteId[0]: stsCardDownvoteId; 
+    console.log(stsCardUpvoteIdNum + " " + stsCardDownvoteIdNum);
     if(!stsClassStr) res.status(200).json("Class is required");
     
     if(req.method == 'GET'){           
@@ -18,6 +21,7 @@ const handler = async function handler(req:NextApiRequest, res: NextApiResponse)
     }
 
     if(req.method == 'POST'){
+        console.log(stsCardUpvoteIdNum + " " + stsCardDownvoteIdNum);
         console.log("test");
         if(!stsCardUpvoteIdNum || !stsCardDownvoteIdNum) return res.status(200).json("Both upvoteId and downvoteId are required");
         console.log("passed test");
