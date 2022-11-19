@@ -18,7 +18,9 @@ const handler = async function handler(req:NextApiRequest, res: NextApiResponse)
     }
 
     if(req.method == 'POST'){
+        console.log("test");
         if(!stsCardUpvoteIdNum || !stsCardDownvoteIdNum) return res.status(200).json("Both upvoteId and downvoteId are required");
+        console.log("passed test");
         const upC = await prisma.stSCardVote.update({where:{id:parseInt(stsCardUpvoteIdNum)},data:{upvotes:{increment:1},timesListed:{increment:1}}});
         const downC = await prisma.stSCardVote.update({where:{id:parseInt(stsCardDownvoteIdNum)},data:{timesListed:{increment:1}}});
         if(upC && downC) return res.status(200).json("Vote submitted");
